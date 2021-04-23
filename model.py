@@ -1,6 +1,6 @@
 import keras
 from keras.models import Sequential
-from keras.layers import Dense, Dropout, Flatten , Activation, Masking, LSTM
+from keras.layers import Dense, Dropout, Flatten , Activation, Masking, LSTM, GRU
 from keras.layers import Conv2D, MaxPooling2D
 from keras import backend as K
 from keras.callbacks import Callback
@@ -55,17 +55,19 @@ def Net_2LSTM():
 
 def Net_2LSTM_1regress():
 
-    input1 = Input((400,49))
-    input2 = Input((400,23))
+    input1 = Input((3628,49))
+    input2 = Input((3628,23))
 
     #print("input1:",input1.shape)
 
-    l = Bidirectional(LSTM(32, dropout=0.2, recurrent_dropout=0.2, input_shape=(400,49)))(input1)
+    m1 = Masking(mask_value=0)(input1)
+    l = Bidirectional(LSTM(32, dropout=0.2, recurrent_dropout=0.2))(m1)
     d1 = Dense(32,activation='relu')(l)
 
     #print('d1:',d1.shape)
 
-    l2 = Bidirectional(LSTM(16, dropout=0.2, recurrent_dropout=0.2, input_shape=(400,23)))(input2)
+    m2 = Masking(mask_value=0)(input2)
+    l2 = Bidirectional(LSTM(16, dropout=0.2, recurrent_dropout=0.2))(m2)
     d2 = Dense(32,activation="relu")(l2)
 
 
@@ -76,7 +78,8 @@ def Net_2LSTM_1regress():
     b2 = Dense(16,activation="relu")(d4)
     o2 = Dense(1,activation="relu", name="regress_1")(b2)
 
-
     model = Model([input1, input2],o2)
 
     return model
+
+

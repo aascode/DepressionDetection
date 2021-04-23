@@ -17,10 +17,10 @@ LR = 0.0001
 BATCH_SIZE = 32
 EPOCH = 400
 
-#AU: minLen: 12447; 400*49
-#eGeMAPS: 400*23
+#AU: minLen: 12447; 3628*49
+#eGeMAPS: 3628*23
 label_path="E:/csci535/project/DAIC/data/train_split.csv"
-data_path="E:/csci535/project/DAIC/average_data/"
+data_path="E:/csci535/project/DAIC/padding_average_data/"
 
 #label_path="../data/train_split.csv"
 #data_path="../average_data/"

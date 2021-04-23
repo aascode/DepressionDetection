@@ -155,8 +155,8 @@ class Generator_Net_2LSTM_1regress(keras.utils.Sequence):
     def __data_generation(self, list_IDs_temp):
         'Generates data containing batch_size samples' # X : (n_samples, *dim, n_channels)
         # Initialization
-        X1 = np.empty((self.batch_size, *(400,49)))
-        X2 = np.empty((self.batch_size, *(400,23)))
+        X1 = np.empty((self.batch_size, *(3628,49)))
+        X2 = np.empty((self.batch_size, *(3628,23)))
 
         #y = np.empty((self.batch_size), dtype=int)
         y1 = []
